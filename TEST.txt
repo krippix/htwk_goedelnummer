@@ -1,0 +1,5 @@
+//Desweiteren müssen die Abgaben eine Datei TEST.txt enthalten, in denen Tests dokumentiert
+//sind. Dies kann geschehen indem Sie dort mögliche Benutzereingaben dokumentieren oder indem
+//Sie auf Programme verweisen, die Sie zum Testen der Funktionalität geschrieben haben. Das
+//können eigenständige Programme ähnlich der in den Übung vorkommenden main.cpp sein, die
+//Funktionen aufrufen.
