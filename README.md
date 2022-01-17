@@ -2,5 +2,5 @@
 Erstellt durch ***REMOVED***
 
 #Implementierte Funktionen
-[x] Test
-[ ] Test2
+- [ ] Test
+- [x] Test2
