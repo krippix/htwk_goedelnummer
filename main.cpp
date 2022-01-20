@@ -1,4 +1,5 @@
 #include "primeNumbers.hpp"
+#include "goedelNumber.hpp"
 
 int main(){
     
@@ -14,7 +15,16 @@ int main(){
         std::cout << "Exiting with error code <" << errorCode << ">" << std::endl;
         return EXIT_FAILURE;
     }
-    for (int i = 0; i < prime.size(); i++){
-        std::cout << prime[i] << std::endl;
-    }
+    
+
+    GoedelNumber goedel;
+
+    std::string userinput;
+    std::cin >> userinput;
+    goedel.translateInput(userinput);
+
+
+
+
+
 }
