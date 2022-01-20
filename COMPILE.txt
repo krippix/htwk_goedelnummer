@@ -2,4 +2,4 @@
 //die Befehle zum Kompilieren und, wenn nötig, zum Ausführen aufgelistet sind, wie sie für den
 //Rechnerpool der Hochschule nötig sind.
 
-g++ -o main.exe ./main.cpp -Wall
+g++ -o ./main.exe ./main.cpp ./primeNumbers.cpp ./goedelNumber.cpp -Wall
