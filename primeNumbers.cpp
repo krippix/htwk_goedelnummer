@@ -116,33 +116,35 @@ int PrimeNumbers::size(){
 
 
 
-void checkLine(std::string line,bool intAllowed, std::vector<char> allowedChars) {
+void checkLine(std::string line, std::vector<char> allowedChars, bool intAllowed) {
     //Takes 2+1 inputs. A string, custom allowed chars (can be empty), and a bool if integers are allowed (t/f) (default=true)
     //Throws error if a char was not legal
     bool charIsLegal;//Used to determine if curren char was allowed 
 
     //There are two cases now: Integers with chars and only the given chars
-    if (intAllowed){
-        for (unsigned int i = 0; i < line.size(); i++){ //iterates through line
-            charIsLegal = false;
+    for (unsigned int i = 0; i < line.size(); i++){ //iterates through line
+        charIsLegal = false;
 
-            //If current char ist not a digit -> Check if it contains allowed chars
-            if (!std::isdigit(line[i]) || !intAllowed){
-                //Iterates through allowed chars
-                for (unsigned int j = 0; j < allowedChars.size(); j++){ 
-                    if (line[i] == allowedChars[j]){
-                        charIsLegal = true;
-                    }
+        //If current char ist not a digit -> Check if it contains allowed chars
+        if (!(std::isdigit(line[i])) || !intAllowed){
+            //Iterates through allowed chars
+            for (unsigned int j = 0; j < allowedChars.size(); j++){ 
+                if (line[i] == allowedChars[j]){
+                    charIsLegal = true;
                 }
-                charIsLegal = true;
             }
             
-            //If no legal char was found, charIsLegal will be false:
-            if (!charIsLegal){
-                std::cout << "[ERROR] Illegal Character found: " << line[i] << std::endl;
-                throw (422);
-            }
         }
-        return;
+        else {
+            charIsLegal = true;
+        }
+        
+        //If no legal char was found, charIsLegal will be false:
+        if (!charIsLegal){
+            std::cout << "[ERROR] Illegal Character found: " << line[i] << std::endl;
+            throw (422);
+        }
     }
+    return;
+
 }
