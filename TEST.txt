@@ -3,3 +3,5 @@
 //Sie auf Programme verweisen, die Sie zum Testen der Funktionalität geschrieben haben. Das
 //können eigenständige Programme ähnlich der in den Übung vorkommenden main.cpp sein, die
 //Funktionen aufrufen.
+
+- Irgendwelche Kommas usw. in primes.dat einfügen

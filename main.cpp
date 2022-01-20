@@ -5,8 +5,7 @@ int main(){
     
     PrimeNumbers prime; //Create PrimeNumber Object
     
-    
-    //Attempts to create prime object, containing the primes imported from "primes.dat"
+    //Tests if primes.dat can be read
     try{
         prime.init();
     }
@@ -18,11 +17,7 @@ int main(){
     GoedelNumber goedel;
 
     std::string userinput;
+    std::cout << "Input your formula: ";
     std::cin >> userinput;
-    goedel.translateInput(userinput);
-
-
-
-
-
+    goedel.input(userinput);
 }

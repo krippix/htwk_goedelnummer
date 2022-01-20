@@ -1,9 +1,14 @@
-# Aufgabe 22 Gödelnummer
-Erstellt durch ***REMOVED***
+# 22 Gödelnummer
+***REMOVED***
 
 # Implementierte Funktionen
-- [ ] Test
-- [x] Test2
+- [x] Einlesen der Primzahlen
+- [x] Datei auf Fehler prüfen
+- [ ] Konvertieren der Benutzereingabe in Gödelnummer
+- [ ] Implementierung von Variablen nach 'b'
+- [ ] Menüführung
+- [ ] Overflow beim berechnen der Gödelnummer verhindern
+- [ ] Testen der Primes.dat auslagern
 
 # Dokumentation
 ## Beschreibung des Programmes
@@ -15,10 +20,13 @@ An die primes.dat werden die Folgenden Anforderungen gestellt:
 - Aufsteigende Reihenfolge beginnend bei 2
 - Leerzeichen und Zeilenumbrüche werden ignoriert
 - Es müssen offensichlich Primzahlen sein
+Von diesen Voraussetzungen werden nicht alle durch das Programm überprüft.
+Besonders nicht, ob die eingegebenen Zahlen wirklich Primzahlen sind.
 
 ## Error codes
 Ich habe die Fehlecodes in etwa so verwendet, wie man es bei HTTP machen würde.
 
 - 404: Datei nicht gefunden
 - 416: Primzahl außerhalb des gültigen Bereichs 
+- 418: Ich bin ein Teekessel
 - 422: Datei enthält nicht verarbeitbare Zeichen
