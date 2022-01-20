@@ -1,8 +1,7 @@
 #include "primeNumbers.hpp"
 
-//##############
-//#   PRIVATE  #
-//##############
+//    PRIVATE   
+//######################################################################
 
 //-----functions-----
 
@@ -42,6 +41,7 @@ void PrimeNumbers::importPrimeNumbers(){
 
         lineNumber++; //Increment line number, will be used in case an error happens.
     }
+    primesDat.close(); //IMPORTANT
 }
 
 void PrimeNumbers::convertLine(std::string line){
@@ -56,7 +56,7 @@ void PrimeNumbers::convertLine(std::string line){
 
     //Iterates through provided lines and converts them into a string
     //uses ',' as seperator and ignores spaces
-    for (int i = 0; i < line.size(); i++){
+    for (unsigned int i = 0; i < line.size(); i++){
         switch (line[i]){
             case ',': 
                 m_primeNumbers.push_back(std::stoi(buffer)); //This is where the actual conversion to in happens
@@ -72,9 +72,10 @@ void PrimeNumbers::convertLine(std::string line){
 }
 
 
-//##############
-//#   PUBLIC   #
-//##############
+//    PUBLIC   
+//######################################################################
+
+
 
 void PrimeNumbers::init(){
     //initializes PrimeNumber Object, imports files..
@@ -102,28 +103,7 @@ unsigned long int PrimeNumbers::operator[](unsigned long int index){
 }
 
 
-void checkLine(std::string& line, std::vector<char> allowedChars) {
-    //Checks given 
-    bool charIsLegal;
 
-    
-    for (int i = 0; i < line.size(); i++){ //iterates through line
-        charIsLegal = false;
-
-        for (int j = 0; j < allowedChars.size(); j++){ //iterates through allowed Chars
-            if (line[i] == allowedChars[j]){
-                charIsLegal = true;
-            }
-        }
-
-        //Check if any of the chars of the current line was illegal
-        if (!charIsLegal){
-            std::cout << "[ERROR] Illegal Characters found.";
-            throw (422);
-        }
-    }
-    return;
-}
 
 
 //getter
@@ -132,3 +112,37 @@ int PrimeNumbers::size(){
 }
 
 //setter
+
+
+
+
+void checkLine(std::string line,bool intAllowed, std::vector<char> allowedChars) {
+    //Takes 2+1 inputs. A string, custom allowed chars (can be empty), and a bool if integers are allowed (t/f) (default=true)
+    //Throws error if a char was not legal
+    bool charIsLegal;//Used to determine if curren char was allowed 
+
+    //There are two cases now: Integers with chars and only the given chars
+    if (intAllowed){
+        for (unsigned int i = 0; i < line.size(); i++){ //iterates through line
+            charIsLegal = false;
+
+            //If current char ist not a digit -> Check if it contains allowed chars
+            if (!std::isdigit(line[i]) || !intAllowed){
+                //Iterates through allowed chars
+                for (unsigned int j = 0; j < allowedChars.size(); j++){ 
+                    if (line[i] == allowedChars[j]){
+                        charIsLegal = true;
+                    }
+                }
+                charIsLegal = true;
+            }
+            
+            //If no legal char was found, charIsLegal will be false:
+            if (!charIsLegal){
+                std::cout << "[ERROR] Illegal Character found: " << line[i] << std::endl;
+                throw (422);
+            }
+        }
+        return;
+    }
+}

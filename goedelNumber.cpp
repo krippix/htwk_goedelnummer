@@ -3,42 +3,31 @@
 GoedelNumber::GoedelNumber(){
 
     //Initialize translation key for later use
-    std::map<char,int> m_translationKey = {
-            {'+',1},
-            {'-',2},
-            {'*',3},
-            {'/',4},
-            {'=',5},
-            {'0',6},
-            {'s',7},
-            {'a',8},
-            {'b',9},
-        };
+    
 
 }
 
+void GoedelNumber::test(std::string wtfisgoingon){
+    std::cout << wtfisgoingon;
+}
 
-int GoedelNumber::translateInput(std::string input){
+void GoedelNumber::translateInput(std::string userinput){
+    std::cout << userinput << std::endl;
     //Takes String as input and returns Goedel Number as output
     std::vector<char> allowedChars {' ','0','1','2','3','4','5','6','7','8','9','+','-','*','/','=','a','b'};
-    std::string result = "";
-
-    if (input.size() == 0){
-        std::cout << "Your input is empty! Please try again." << std::endl;
-    }
-
+    
     //checks if input contains illegal chars
     try{
-        checkLine(input, allowedChars); 
+        checkLine(userinput, allowedChars); 
     }
     catch(int errorCode){
         throw(errorCode);
     }
-
+    
     //Integers are convertet to the n*s+0 format
-    result = intToSucc(input);
-    std::cout << "Successor result: " << result << std::endl;
-
+    std::string succ_result = intToSucc(userinput);
+    std::cout << "Successor result: " << succ_result << std::endl;
+    /*
     //Now the successor format can be converted to a vector of integers
     std::vector<int> resultVec = succToVector(result);
     
@@ -49,7 +38,7 @@ int GoedelNumber::translateInput(std::string input){
     std::cout << std::endl;
 
     std::cout << "Final result: " << calculateGoedelNumber(resultVec);
-
+    */
 
 }
 
@@ -58,22 +47,39 @@ std::string GoedelNumber::intToSucc(std::string input){
     //convert integers to ss0 etc.
     //Example: 1 = s0, 2 = ss0
     std::string result = "";
-    std::string testing = "test";
     bool wasInt = false; //keeps track of whether the last char was an integer
     std::string intBuffer; //keeps track of ints until non-int char
-    std::cout << testing << std::endl;
-    for (int i = 0; i < input.size(); i++){
-        if (input[i] >= 48 || input[i] <= 57){ //Checks if current iteration is an int
+    
+    for (unsigned int i = 0; i < input.size(); i++){
+        if (std::isdigit(input[i])){ //Checks if current iteration is an int
+            std::cout << "input[i]: " << input[i] << std::endl;
             wasInt = true;
             intBuffer += input[i];
+            std::cout << "intBuffer: " << intBuffer << std::endl;
+        
+            //If this is the last int also crease ssss-syntax
+            if (i == input.size()-1){
+                int temp_int = std::stoi(intBuffer); //Converts intbuffer into actual int type
+                    std::cout << "temp_int: " << temp_int << std::endl;
+                    
+                    //append temp_int times c
+                    for (int j = 0; j <= temp_int; j++){
+                        result += 's';
+                    }
+                    result += '0';
+                    intBuffer = ""; //Reset intbuffer for next loop
+            }
         }
+        
+        
         else { //Current input isn't an integer
             //Appends 's' for each integer intBuffer is after 0
             if (wasInt){
                 int temp_int = std::stoi(intBuffer); //Converts intbuffer into actual int type
+                std::cout << "temp_int: " << temp_int << std::endl;
                 
                 //append temp_int times c
-                for (int j = 0; j <= temp_int; j++){
+                for (int j = 0; j < temp_int; j++){
                     result += 's';
                 }
                 result += '0';
@@ -86,7 +92,9 @@ std::string GoedelNumber::intToSucc(std::string input){
 
             wasInt = false; //Reset wasInt for next loop
         }
+        std::cout << "result: " << result << std::endl;
     }
+    return result;
 }
 
 
@@ -95,7 +103,7 @@ std::vector<int> GoedelNumber::succToVector(std::string succ_input){
     
     std::vector<int> resultVector;
 
-    for (int i = 0; i < succ_input.size(); i++){
+    for (unsigned int i = 0; i < succ_input.size(); i++){
         //Takes current char as input for the translation key, the key returns the assigned value of the char 
         //and puts it into the vector
         resultVector.push_back(m_translationKey[succ_input[i]]);
@@ -112,7 +120,7 @@ unsigned long int GoedelNumber::calculateGoedelNumber(std::vector<int> input){
     PrimeNumbers prime;
 
 
-    for (int i = 0; i < input.size(); i++){
+    for (unsigned int i = 0; i < input.size(); i++){
         final_result += pow(prime[i],input[i]);
     }
 
@@ -123,7 +131,7 @@ unsigned long int GoedelNumber::pow(unsigned long int a, unsigned long int b){
     //Takes 1st input to the power of the second input
     unsigned long int result = a;
     
-    for (int i = 0; i < b; i++){
+    for (unsigned int i = 0; i < b; i++){
         result *= a;
     }
 
