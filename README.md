@@ -15,7 +15,7 @@
 Beim Starten der Software wird zuerst eine instanz der Klasse PrimeNumber erstellt, 
 dabei wird dann die Datei "primes.dat" eingelesen.
 
-## Error codes
+## Fehlercodes
 Ich habe die Fehlecodes in etwa so verwendet, wie man es bei HTTP machen würde.
 
 - 404: Datei nicht gefunden
@@ -54,7 +54,7 @@ Das passiert nicht im Konstruktor, da sich Fehler nicht im try block abfangen la
 
 ### PrimeNumbers::operator[]()
 - Parameter: unsigned long int
-- Rückgabe: unsigned long int primzahl
+- Rückgabe: unsigned long int
 
 Erlaubt es eine beliebige Primzahl wie aus einem Vektor abzurufen: primzahl[i] würde daher die i-te Primzahl zurückgeben.
 
