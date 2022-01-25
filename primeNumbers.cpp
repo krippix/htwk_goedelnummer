@@ -7,7 +7,7 @@
 
 void PrimeNumbers::importPrimeNumbers(){
     //Import of prime number file and error handling
-    std::vector<char> allowedChars {' ',',','0','1','2','3','4','5','6','7','8','9'}; //allowed chars in input
+    std::vector<char> allowedChars {' ',','}; //allowed chars in input
 
     std::ifstream primesDat; //Initialize data object
 
