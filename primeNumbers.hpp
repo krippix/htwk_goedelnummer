@@ -5,10 +5,14 @@
 #include <vector>
 #include <string>
 
+/**
+ * @brief Handles import of primeNumbers and accessing them
+ * 
+ */
 class PrimeNumbers{
     private:
     //variables
-        std::vector<unsigned long> m_primeNumbers;
+        std::vector<unsigned long long int> m_primeNumbers;
         
     //functions
         /**
@@ -46,7 +50,7 @@ class PrimeNumbers{
          * 
          * @return int amount of primes
          */
-        int size();
+        unsigned long long size();
 };
 
 /**

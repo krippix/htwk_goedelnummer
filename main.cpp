@@ -27,13 +27,8 @@ int main(){
     std::string userinput;
     
     std::cout << "Input your formula: ";
-    try{
-        std::cin >> userinput;
-    }
-    catch(...){
-        std::cout << "Input failed, exiting program." << std::endl;
-        return EXIT_FAILURE;
-    }
+    
+    std::getline(std::cin, userinput);
     
     //Now the userinput will be passed and processed
     try{

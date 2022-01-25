@@ -6,9 +6,6 @@
 //-----functions-----
 
 std::string GoedelNumber::formulaToSucc(std::string input){
-    //Converts the integers in the provided formula to successors of the number 0
-    //Example: 3 turns into sss0, 1 turns into s0
-
     bool wasInt = false; //keeps track of whether the last char was an integer
     std::string intBuffer; //Buffers current int "chain"
     std::string result = "";
@@ -28,9 +25,11 @@ std::string GoedelNumber::formulaToSucc(std::string input){
                 result += intToSucc(intBuffer);
                 intBuffer = ""; 
             }
-            //Now the current non-int char can be appended
-            result += input[i];
-            
+            //Now the current non-int char can be appended, ignore spaces
+            if (input[i] != ' '){
+                result += input[i];
+            }
+                       
             //Mark current char as non-int for next loop
             wasInt = false; 
         }
@@ -47,21 +46,32 @@ std::string GoedelNumber::formulaToSucc(std::string input){
 
 
 std::string GoedelNumber::intToSucc(std::string intString){
-    //converts string with only integers to successor format
     std::string result;
+    unsigned long int convertedInt;
 
     //Converts int-string to actual int
-    int integer = std::stoi(intString); 
+    try{
+        convertedInt = std::stoll(intString); 
+    }
+    catch(std::out_of_range&){
+        std::cout << "[ERROR] At least 1 of the provided integers is too large to be processed!" << std::endl;
+        throw(416);
+    }
+    
+    if (m_primes->size() < convertedInt){
+        std::cout << "[ERROR] Integer too large for provided Prime numbers." << std::endl;
+        throw(416);
+    }
+    
     
     //Creates number and return string with format interger*'c'+0
-    result += std::string(integer, 's') + '0';
+    result += std::string(convertedInt, 's') + '0';
     //result += '0';
     return result;
 }
 
 
 std::vector<int> GoedelNumber::succToIntChain(std::string succ_input){
-    //Takes the successor formatted string and turns it into a list of integers
     std::vector<int> resultVector;
 
     for (unsigned int i = 0; i < succ_input.size(); i++){
@@ -83,14 +93,21 @@ void GoedelNumber::printIntChain(){
 
 
 void GoedelNumber::calculateGoedelNumber(std::vector<int> intChainInput){
-    //Takes the m_IntChain vector as input and turns it into the Gödel number
-    //PrimeNumbers prime;
-    //prime.init();
+    
+    //This variable will be used to attempt to detect overflows
+    unsigned long long int overflowChecker = 0;
 
     for (unsigned int i = 0; i < intChainInput.size(); i++){
+        overflowChecker = m_goedelNumber;
         
         //Actual calculation
         m_goedelNumber += std::pow(m_primes->operator[](i), intChainInput[i]);
+        
+        //Check for overflow
+        if (overflowChecker > m_goedelNumber){
+            std::cout << "[ERROR] Resulting Godel number is too large!" << std::endl;
+            throw(416);
+        }
         
         //Creating String with prime^int * prime^int [...] for later visualization
         m_goedelPrimeSteps += std::to_string(m_primes->operator[](i));
@@ -117,21 +134,15 @@ GoedelNumber::GoedelNumber(PrimeNumbers* prime){
 //-----functions-----
 
 void GoedelNumber::input(std::string userinput){
-    //Accepts formula and converts it into the Goedelnumber
-    
     //Vector of allowed chars (excluding integers)
     std::vector<char> allowedChars {' ','+','-','*','/','=','a','b'};
 
     //Checking input for Illegal chars
-    try{
-        checkLine(userinput, allowedChars); 
-    }
-    catch(int errorCode){
-        throw(errorCode);
-    }
+    checkLine(userinput, allowedChars); 
+    
     //saves userinput
     m_input = userinput;
-    
+
     //converting Integers to the successor format
     m_successorFormat = formulaToSucc(userinput);
     

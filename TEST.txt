@@ -4,4 +4,21 @@
 //können eigenständige Programme ähnlich der in den Übung vorkommenden main.cpp sein, die
 //Funktionen aufrufen.
 
-- Irgendwelche Kommas usw. in primes.dat einfügen
+# Primzahlen
+- Unerlaubte Symbole in primes.dat schreiben    //Fehlermeldung wird ausgegeben
+- Leere primes.dat                              //Wird angezeigt
+- primes.dat löschen                            //Fehlermeldung wird ausgegeben
+- zu große Zahl hinzufügen                      //Zahl wird ignoriert
+
+# Benutzereingaben:
+- Einzelne zu große Zahl: 
+    "99999999999999999999"
+- Mehrere Zahlen, die eine zu große Gödelnummer ergeben:
+    "123+123+123+123+123+123+123+123+123+123+123+123+123+123+123+123+123+123+123+123+123+123+123+123+123+123+123+123+123+12+3"
+- Große Menge von variablen:
+    "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+- Eingabe mit Leerzeichen
+    "1 + 2 = 12"
+
+Die oben gennanten Fälle werden alle vom Programm entweder akzeptiert oder führen zum Kontrollierten abbruch.
+Weitere möglichkeiten für Abstürze zu sorgen sind mir nicht eingefallen.

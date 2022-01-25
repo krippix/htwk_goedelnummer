@@ -99,7 +99,7 @@ unsigned long int PrimeNumbers::operator[](unsigned long int index){
 
 //-----getter-----
 
-int PrimeNumbers::size(){
+unsigned long long PrimeNumbers::size(){
     return m_primeNumbers.size();
 }
 
