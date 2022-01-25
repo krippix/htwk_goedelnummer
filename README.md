@@ -4,9 +4,9 @@
 # Implementierte Funktionen
 - [x] Einlesen der Primzahlen
 - [x] Datei auf Fehler prüfen
-- [ ] Konvertieren der Benutzereingabe in Gödelnummer
+- [x] Konvertieren der Benutzereingabe in Gödelnummer
 - [ ] Implementierung von Variablen nach 'b'
-- [ ] Menüführung
+- [ ] Menüführung - braucht man das überhaupt?
 - [ ] Overflow beim berechnen der Gödelnummer verhindern
 - [ ] Testen der Primes.dat auslagern
 
