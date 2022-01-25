@@ -15,14 +15,6 @@
 Beim Starten der Software wird zuerst eine instanz der Klasse PrimeNumber erstellt, 
 dabei wird dann die Datei "primes.dat" eingelesen.
 
-An die primes.dat werden die Folgenden Anforderungen gestellt:
-- Nur die Zahlen 0-9, getrennt durch Kommas
-- Aufsteigende Reihenfolge beginnend bei 2
-- Leerzeichen und Zeilenumbrüche werden ignoriert
-- Es müssen offensichlich Primzahlen sein
-Von diesen Voraussetzungen werden nicht alle durch das Programm überprüft.
-Besonders nicht, ob die eingegebenen Zahlen wirklich Primzahlen sind.
-
 ## Error codes
 Ich habe die Fehlecodes in etwa so verwendet, wie man es bei HTTP machen würde.
 
@@ -30,3 +22,12 @@ Ich habe die Fehlecodes in etwa so verwendet, wie man es bei HTTP machen würde.
 - 416: Primzahl außerhalb des gültigen Bereichs 
 - 418: Ich bin ein Teekessel
 - 422: Datei enthält nicht verarbeitbare Zeichen
+
+## Klassen und Funktionen
+### primeNumbers
+Die Klasse primeNumbers befasst sich mit dem import der primes.dat Datei.
+Die Datei wird auf ungültige Symbole überprüft, es wird aber davon ausgegangen dass der input ausschließlich aus Primzahlen in aufsteigender Reihenfolge besteht.
+Leerzeichen und Zeilenumbrüche werden nicht beachtet (Außer eine Zahl wird durch einen Zeilenumbruch unterbrochen)
+#### funktionen
+##### importPrimeNumbers()
+test
