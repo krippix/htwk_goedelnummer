@@ -6,10 +6,11 @@
 //-----functions-----
 
 void PrimeNumbers::importPrimeNumbers(){
-    //Import of prime number file and error handling
-    std::vector<char> allowedChars {' ',','}; //allowed chars in input
+    //allowed chars in input
+    std::vector<char> allowedChars {' ',','}; 
 
-    std::ifstream primesDat; //Initialize data object
+    //Initialize data object
+    std::ifstream primesDat; 
 
     //Attempts to open "primes.dat"
     primesDat.open("primes.dat", std::ifstream::in);
@@ -21,14 +22,14 @@ void PrimeNumbers::importPrimeNumbers(){
     }
     
     //Read each line of the file and add the resulting integers to the m_primeNumbers vector
-    std::string current_line; //Buffer for current line
+    std::string current_line;
     int lineNumber = 1;
 
     while (primesDat){
         std::getline (primesDat, current_line);
 
         try{
-            checkLine(current_line, allowedChars); //Checks for illegal chars
+            checkLine(current_line, allowedChars);
         }
         catch (int errorCode){            
             //Adds line that causes failure and throws again
@@ -45,7 +46,6 @@ void PrimeNumbers::importPrimeNumbers(){
 
 
 void PrimeNumbers::convertLine(std::string line){
-    //converts given line into integer and adds it to the m_primeNumbers vector
 
     std::string buffer = "";
 
@@ -59,13 +59,13 @@ void PrimeNumbers::convertLine(std::string line){
     for (unsigned int i = 0; i < line.size(); i++){
         switch (line[i]){
             case ',': 
-                m_primeNumbers.push_back(std::stoi(buffer)); //This is where the actual conversion to in happens
+                m_primeNumbers.push_back(std::stoi(buffer));
                 buffer = "";
                 break;
             case ' ':
                 break;
             default:
-                buffer += line[i]; //writes current char into buffer
+                buffer += line[i];
                 break;
         }
     }
@@ -75,8 +75,6 @@ void PrimeNumbers::convertLine(std::string line){
 //    PUBLIC   
 //######################################################################
 void PrimeNumbers::init(){
-    //initializes PrimeNumber Object, imports files..
-    //This is not in the constructor because it can fail and I want to handle errors
     
     try{
         importPrimeNumbers();
@@ -90,7 +88,6 @@ void PrimeNumbers::init(){
 //-----operators-----
 
 unsigned long int PrimeNumbers::operator[](unsigned long int index){
-    //Operator for easier calling of the numbers
     
     if (index >= m_primeNumbers.size()){
         std::cout << "[ERROR] Index out of Range, there are only " << m_primeNumbers.size() << " Numbers available!" << std::endl;
@@ -110,9 +107,9 @@ int PrimeNumbers::size(){
 //-----setter-----
 
 void checkLine(std::string line, std::vector<char> allowedChars, bool intAllowed) {
-    //Takes 2+1 inputs. A string, custom allowed chars (can be empty), and a bool if integers are allowed (t/f) (default=true)
-    //Throws error if a char was not legal
-    bool charIsLegal;//Used to determine if curren char was allowed 
+
+    //Used to determine if current char was allowed 
+    bool charIsLegal;
 
     //There are two cases now: Integers with chars and only the given chars
     for (unsigned int i = 0; i < line.size(); i++){ //iterates through line

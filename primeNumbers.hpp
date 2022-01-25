@@ -17,7 +17,7 @@ class PrimeNumbers{
         void importPrimeNumbers();
 
         /**
-         * @brief Converts String to int and appends them to the vector m_primeNumbers
+         * @brief Converts given String to int and appends them to the vector m_primeNumbers
          * 
          * @param current_line String to convert
          */
