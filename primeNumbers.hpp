@@ -53,7 +53,7 @@ class PrimeNumbers{
  * @brief Checks input line for allowed chars, throws error if illegal char is found
  * 
  * This function checks a provided line for a set of chars you can define. Integers can be allowed by using the intAllowed parameter.
- * 
+ * Throws error if a char was not legal
  * @param line string to check
  * @param allowedChars vector of chars you want to allow
  * @param intAllowed default=true, if false, integers are not allowed
