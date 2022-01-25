@@ -3,6 +3,7 @@
 //    PRIVATE   
 //######################################################################
 
+//-----functions-----
 
 std::string GoedelNumber::formulaToSucc(std::string input){
     //Converts the integers in the provided formula to successors of the number 0
@@ -81,35 +82,39 @@ void GoedelNumber::printIntChain(){
 }
 
 
-unsigned long int GoedelNumber::calculateGoedelNumber(std::vector<int> intChainInput){
+void GoedelNumber::calculateGoedelNumber(std::vector<int> intChainInput){
     //Takes the m_IntChain vector as input and turns it into the Gödel number
     //PrimeNumbers prime;
     //prime.init();
-    unsigned long int result;
 
     for (unsigned int i = 0; i < intChainInput.size(); i++){
-        std::cout << m_primes->operator[](i) << "^" << intChainInput[i];
-
-        result += std::pow(m_primes->operator[](i), intChainInput[i]);
+        
+        //Actual calculation
+        m_goedelNumber += std::pow(m_primes->operator[](i), intChainInput[i]);
+        
+        //Creating String with prime^int * prime^int [...] for later visualization
+        m_goedelPrimeSteps += std::to_string(m_primes->operator[](i));
+        m_goedelPrimeSteps += "^";
+        m_goedelPrimeSteps += std::to_string(intChainInput[i]);      
         
         if (!(i == intChainInput.size()-1)){
-            std::cout << " + ";
+            m_goedelPrimeSteps += " + ";
         }
     }
-
-    std::cout << std::endl << "= " << result << std::endl;
-    return result;
+    std::cout << std::endl;
 }
 
 
 //    PUBLIC   
 //######################################################################
+
+//-----constructor-----
+
 GoedelNumber::GoedelNumber(PrimeNumbers* prime){
     m_primes = prime;
 }
 
-
-
+//-----functions-----
 
 void GoedelNumber::input(std::string userinput){
     //Accepts formula and converts it into the Goedelnumber
@@ -129,13 +134,19 @@ void GoedelNumber::input(std::string userinput){
     
     //converting Integers to the successor format
     m_successorFormat = formulaToSucc(userinput);
-    std::cout << "Successor format: " << m_successorFormat << std::endl;
     
     //Now the successor format can be converted to a vector of integers and printed out
     m_intChain = succToIntChain(m_successorFormat);
-    std::cout << "As integers: ";
-    printIntChain();
     
     //Now the goedel number can be calculated
     calculateGoedelNumber(m_intChain);
+}
+
+
+void GoedelNumber::printResults(){
+    std::cout << "Successor format: " << m_successorFormat << std::endl;
+    std::cout << "As integers:      "; printIntChain();
+    std::cout << "Prime^int:        " << m_goedelPrimeSteps << std::endl;
+    std::cout << "------------------------------------" << std::endl;
+    std::cout << "Result:           " << m_goedelNumber << std::endl << std::endl;
 }

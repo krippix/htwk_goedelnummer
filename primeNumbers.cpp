@@ -38,11 +38,11 @@ void PrimeNumbers::importPrimeNumbers(){
 
         //Now that the current line has been checked, it can be added to the vector
         convertLine(current_line);
-
-        lineNumber++; //Increment line number, will be used in case an error happens.
+        lineNumber++;
     }
     primesDat.close();
 }
+
 
 void PrimeNumbers::convertLine(std::string line){
     //converts given line into integer and adds it to the m_primeNumbers vector
@@ -74,9 +74,6 @@ void PrimeNumbers::convertLine(std::string line){
 
 //    PUBLIC   
 //######################################################################
-
-
-
 void PrimeNumbers::init(){
     //initializes PrimeNumber Object, imports files..
     //This is not in the constructor because it can fail and I want to handle errors
@@ -87,11 +84,11 @@ void PrimeNumbers::init(){
     catch (int errorCode){
         throw (errorCode);
     }
-    
-    std::cout << "Successfully loaded " << size() << " prime numbers!" << std::endl;
 }
 
-//operator
+
+//-----operators-----
+
 unsigned long int PrimeNumbers::operator[](unsigned long int index){
     //Operator for easier calling of the numbers
     
@@ -103,18 +100,14 @@ unsigned long int PrimeNumbers::operator[](unsigned long int index){
 }
 
 
+//-----getter-----
 
-
-
-//getter
 int PrimeNumbers::size(){
     return m_primeNumbers.size();
 }
 
-//setter
 
-
-
+//-----setter-----
 
 void checkLine(std::string line, std::vector<char> allowedChars, bool intAllowed) {
     //Takes 2+1 inputs. A string, custom allowed chars (can be empty), and a bool if integers are allowed (t/f) (default=true)
@@ -133,7 +126,6 @@ void checkLine(std::string line, std::vector<char> allowedChars, bool intAllowed
                     charIsLegal = true;
                 }
             }
-            
         }
         else {
             charIsLegal = true;
@@ -146,5 +138,4 @@ void checkLine(std::string line, std::vector<char> allowedChars, bool intAllowed
         }
     }
     return;
-
 }
