@@ -5,7 +5,7 @@ int main(){
     
     PrimeNumbers prime; //Create PrimeNumber Object
     
-    //Tests if primes.dat can be read
+    //Checks if the primes.dat is valid
     try{
         prime.init();
     }
@@ -14,7 +14,8 @@ int main(){
         return EXIT_FAILURE;
     }
 
-    GoedelNumber goedel;
+    //Creates GoedelNumber object with reference to the previously importet prime numbers
+    GoedelNumber goedel(&prime);
 
     std::string userinput;
     std::cout << "Input your formula: ";

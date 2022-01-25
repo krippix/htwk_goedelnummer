@@ -41,7 +41,7 @@ void PrimeNumbers::importPrimeNumbers(){
 
         lineNumber++; //Increment line number, will be used in case an error happens.
     }
-    primesDat.close(); //IMPORTANT
+    primesDat.close();
 }
 
 void PrimeNumbers::convertLine(std::string line){

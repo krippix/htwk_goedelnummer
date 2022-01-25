@@ -2,8 +2,6 @@
 #include "primeNumbers.hpp"
 #include <map>
 
-
-
 class GoedelNumber{
     private:
     //variables
@@ -13,6 +11,7 @@ class GoedelNumber{
         std::string m_successorFormat; //The resulting successor format formula
         std::vector<int> m_intChain; //the formula as chain of ints
         unsigned long int m_goedelNumber; //The final product, the goedel number
+        PrimeNumbers* m_primes; //Pointer to prime numbers
     //functions
         //Converts formula/int to successor syntax: 1 = s0, 2 = ss0 [...]
         std::string formulaToSucc(std::string formula);
@@ -25,13 +24,9 @@ class GoedelNumber{
         unsigned long int calculateGoedelNumber(std::vector<int> intChainInput);
     
     public:
+        //constructor
+        GoedelNumber(PrimeNumbers* prime);
     //functions
         //This is where user-input gets accepted
         void input(std::string input);
-        
-
-        
-        
-        
-        unsigned long int pow(unsigned long int, unsigned long int);
 };

@@ -83,14 +83,14 @@ void GoedelNumber::printIntChain(){
 
 unsigned long int GoedelNumber::calculateGoedelNumber(std::vector<int> intChainInput){
     //Takes the m_IntChain vector as input and turns it into the Gödel number
-    PrimeNumbers prime;
-    prime.init();
+    //PrimeNumbers prime;
+    //prime.init();
     unsigned long int result;
 
     for (unsigned int i = 0; i < intChainInput.size(); i++){
-        std::cout << prime[i] << "^" << intChainInput[i];
+        std::cout << m_primes->operator[](i) << "^" << intChainInput[i];
 
-        result += std::pow(prime[i], intChainInput[i]);
+        result += std::pow(m_primes->operator[](i), intChainInput[i]);
         
         if (!(i == intChainInput.size()-1)){
             std::cout << " + ";
@@ -104,6 +104,12 @@ unsigned long int GoedelNumber::calculateGoedelNumber(std::vector<int> intChainI
 
 //    PUBLIC   
 //######################################################################
+GoedelNumber::GoedelNumber(PrimeNumbers* prime){
+    m_primes = prime;
+}
+
+
+
 
 void GoedelNumber::input(std::string userinput){
     //Accepts formula and converts it into the Goedelnumber
@@ -132,20 +138,4 @@ void GoedelNumber::input(std::string userinput){
     
     //Now the goedel number can be calculated
     calculateGoedelNumber(m_intChain);
-}
-
-
-
-
-
-
-unsigned long int GoedelNumber::pow(unsigned long int a, unsigned long int b){
-    //Takes 1st input to the power of the second input
-    unsigned long int result = a;
-    
-    for (unsigned int i = 0; i < b; i++){
-        result *= a;
-    }
-
-    return result;
 }
